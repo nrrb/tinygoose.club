@@ -60,6 +60,12 @@ try {
   await page.waitForURL('**' + paths[0])
   for (const path of paths) {
     await page.goto(url + path)
+    if (path === '/what-is-tiny-goose-club') {
+      await page.getByRole('heading', { name: 'A look at the space', exact: true }).waitFor()
+      assert.equal(await page.getByRole('link', { name: 'Visit Co-Balt Workspace', exact: true }).getAttribute('href'), 'https://cobaltworkspace.com/')
+      assert.ok(await page.locator('.meeting-space img').evaluate(img => img.complete && img.naturalWidth === 1000))
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    }
     if (path === '/next-events') {
       await page.getByText('Thursday, October 22, 2026', { exact: true }).waitFor()
       assert.equal(await page.getByRole('link', { name: /Thursday, November 5, 2026/ }).getAttribute('href'), 'https://luma.com/3h6fh921')

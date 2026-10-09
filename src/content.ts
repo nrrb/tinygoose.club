@@ -12,6 +12,13 @@ export const homeLinks = [
   { href: '/code-of-goose-conduct', label: 'Code of Goose Conduct', image: graphics.conduct, internal: true },
   { href: '/next-events', label: 'Next Times', image: graphics.events, internal: true },
 ]
+export const meetingSpace = {
+  image: 'photos/meeting-place.jpg',
+  alt: 'Co-Balt conference room with a long wooden table, chairs, a bench along the glass wall, and a wall-mounted screen.',
+  caption: 'The conference room at Co-Balt Workspace where we’ll make things together.',
+  href: 'https://cobaltworkspace.com/',
+  description: 'I started working full-time from Co-Balt Workspace in August 2026. I’ve found it to be a calm, quiet place to work, with room for social connections when they happen naturally. It felt like a good place to bring Tiny Goose Club to life.',
+}
 export const featuredLink = {
   href: 'https://luma.com/fv61x8o0',
   label: 'NEXT EVENT',
@@ -44,7 +51,11 @@ export const pages: InfoPage[] = [
     label: 'What is Tiny Goose Club',
     paragraphs: [
       'A creative meetup for dabblers in Hampden, Baltimore. Bring something to make and spend a couple of hours making it alongside other people.',
-      'Drawing, writing, knitting, button-making, coding—beginners and unfinished projects are welcome. Talking is optional, and friendship is a possibility. This is a queer- and neurodivergent-friendly gathering.',
+      'I’m Nicholas, and I wanted a quiet creative meetup for myself. I couldn’t find one locally that felt like what I was looking for, so I decided to make it myself.',
+      'I wanted it to feel safe for people like me—queer and neurodivergent—and for my friends, some of whom are trans, differently abled, queer, or neurodivergent. I want us to be able to show up as ourselves and participate in whatever way feels comfortable.',
+      'What I was mainly looking for was body doubling: having other people around, working on their own things, while I work on mine. We don’t have to talk or work on the same project. Sometimes just making something in company is enough.',
+      'I also wanted to bring back that childhood excitement of Show and Tell: getting to share something you’ve made with people who are happy to see it. Show and Tell is optional, and the response is encouragement. There’s no pressure to share, finish anything, or impress anyone.',
+      'Drawing, writing, knitting, button-making, coding—beginners and unfinished projects are welcome. Bring a project and your own supplies. Talking is optional, and friendship is a possibility.',
     ],
   },
   {
