@@ -62,6 +62,7 @@ The goose favicon is `public/favicon.svg`. Sharing and event artwork use three g
 
 - `public/goose-social-preview.png`: the 1200×630 social-sharing image. Open Graph and Twitter metadata in the root `index.html` reference this image.
 - `public/goose-event-square.png`: a 630×630 center crop for uploading to an event page. The outer geese are clipped by the crop. This is a separate image and doesn't replace the wide preview.
+- `public/photos/goose-event-square.jpg`: a JPEG version of the square crop, used on each event link on the Next Events page.
 
 These are static PNG files. When replacing the sharing artwork, keep the metadata dimensions and alt text in `index.html` accurate. Update the square crop separately if you want it to match.
 

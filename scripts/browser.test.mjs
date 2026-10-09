@@ -72,6 +72,10 @@ try {
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     }
     if (path === '/next-events') {
+      assert.equal(await page.locator('.link-button img').count(), 3)
+      for (const img of await page.locator('.link-button img').all()) {
+        assert.ok(await img.evaluate(el => el.complete && el.naturalWidth === 630 && el.src.endsWith('/photos/goose-event-square.jpg')))
+      }
       await page.getByText('Thursday, October 22, 2026', { exact: true }).waitFor()
       assert.equal(await page.getByRole('link', { name: /Thursday, November 5, 2026/ }).getAttribute('href'), 'https://luma.com/3h6fh921')
       assert.equal(await page.getByRole('link', { name: /Thursday, November 19, 2026/ }).getAttribute('href'), 'https://luma.com/8jb3leku')

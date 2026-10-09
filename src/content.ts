@@ -5,6 +5,7 @@ export const graphics = {
   about: 'photos/wut-dis-128x128.jpg',
   conduct: 'photos/goose-conduct-128x128.jpg',
   events: 'photos/next-times-128x128.jpg',
+  eventArtwork: 'photos/goose-event-square.jpg',
 }
 export const homeLinks = [
   { href: 'https://luma.com/fv61x8o0', headline: 'HONK!', label: '(Next Event)', image: graphics.meetup, internal: false },

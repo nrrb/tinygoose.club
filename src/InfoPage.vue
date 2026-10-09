@@ -22,7 +22,7 @@ defineProps<{ page: InfoPage }>()
       <p><a :href="meetingSpace.href">Visit Co-Balt Workspace</a></p>
     </section>
     <template v-if="page.path === '/next-events'">
-      <LinkButton v-for="meetup in meetups" :key="meetup.href" :href="meetup.href" :image="graphics.meetup">
+      <LinkButton v-for="meetup in meetups" :key="meetup.href" :href="meetup.href" :image="graphics.eventArtwork">
         <strong>{{ meetup.label }}</strong>
         <template #details>
           <span v-if="meetup.title">{{ meetup.title }}</span>
