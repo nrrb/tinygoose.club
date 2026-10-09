@@ -1,5 +1,5 @@
 export const graphics = {
-  title: 'photos/tiny-goose-club-title-844x256.jpg',
+  title: 'photos/tiny-goose-club-title-844x256.png',
   host: 'photos/nicholas-host-128x128.jpg',
   meetup: 'photos/honk-next-meetup-128x128.jpg',
   about: 'photos/wut-dis-128x128.jpg',

@@ -1,10 +1,10 @@
 :root {
   --ink: #181818;
-  --paper: #fff;
+  --paper: rgb(242, 242, 242);
   --line: #dedede;
   font-family: system-ui, sans-serif;
   color: var(--ink);
-  background: rgb(242, 242, 242);
+  background: var(--paper);
   line-height: 1.5;
 }
 * { box-sizing: border-box; }
@@ -20,11 +20,13 @@ a:focus-visible, h1:focus-visible { outline: 3px solid #985400; outline-offset: 
 .host-row p { margin: 0; font-size: 17px; }
 .host-row strong { font-weight: 600; }
 .link-stack { display: grid; gap: 20px; }
-.link-button { display: flex; align-items: center; gap: 20px; min-height: 48px; border: 2px solid var(--ink); background: var(--paper); text-decoration: none; }
+.link-button { position: relative; display: flex; align-items: center; gap: 20px; min-height: 48px; border: 1px solid var(--ink); background: var(--paper); text-decoration: none; }
+.link-button::before, .link-button::after { content: ''; box-sizing: border-box; position: absolute; background: var(--paper); border: 1px solid var(--ink); pointer-events: none; }
+.link-button::before { top: -1px; bottom: -1px; right: -7px; width: 6px; transform: skewY(45deg); transform-origin: top left; }
+.link-button::after { left: -1px; right: -1px; bottom: -7px; height: 6px; transform: skewX(45deg); transform-origin: top left; }
 .link-button img { display: block; width: 128px; height: 128px; flex-shrink: 0; object-fit: contain; }
 .link-label { padding: 12px 16px 12px 0; font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
 .link-button:not(:has(img)) .link-label { padding: 12px 16px; }
-.link-button:hover { background: #faf7ef; }
 .link-details { display: grid; gap: 4px; margin-top: 8px; font-size: 13px; font-weight: 400; }
 footer { margin-top: 32px; font-size: 12px; color: #555; text-align: center; }
 .info-page { display: grid; gap: 24px; }
