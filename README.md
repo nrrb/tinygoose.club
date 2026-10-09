@@ -36,7 +36,9 @@ All photo paths, alt text, captions, editable stories, and events live in `src/c
 
 Fill `personal.originStory`, `personal.tinyGooseStory`, and `personal.additionalDetails` with Nicholas's actual words. About clearly marks the unfinished story section. Two project entries are reused on About and Nicholas; add more when needed. Home uses the goose photo, How it works uses the room, and Cones uses the cone photo alongside labeled CSS diagrams.
 
-Typography uses Google Fonts (DM Sans and Manrope), with local sans-serif fallbacks. Self-host them or remove the CSS import if third-party requests aren't wanted. Design tokens are at the top of `src/styles.css`.
+The Beacons-inspired design uses a square portrait with a bold white title, a white background, and yellow links with black outlines and offset shadows. Set `photos.portrait.src` to Nicholas's original photograph to fill the homepage portrait and host page; the reference screenshot is not used as a photograph. The square portrait means the last main links require a short scroll on typical mobile screens.
+
+Typography uses Google Fonts (Poppins and Lilita One), with local sans-serif fallbacks. Self-host them or remove the CSS import if third-party requests aren't wanted. Design tokens are at the top of `src/styles.css`.
 
 ## Edit meetups
 

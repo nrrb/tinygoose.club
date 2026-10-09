@@ -5,8 +5,8 @@ const route = useRoute()
 <template>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="site-shell">
-    <header class="masthead">
-      <RouterLink to="/" class="brand" aria-label="Tiny Goose Club home"><span class="goose-mark" aria-hidden="true">g<span>•</span></span><span>TINY GOOSE CLUB</span></RouterLink>
+    <header v-if="route.path !== '/'" class="masthead">
+      <RouterLink to="/" class="brand" aria-label="Tiny Goose Club home"><span aria-hidden="true">🪿</span><span>TINY GOOSE CLUB</span></RouterLink>
       <span class="city">BALTIMORE, MD</span>
     </header>
     <nav v-if="route.path !== '/'" class="back-nav" aria-label="Home"><RouterLink to="/">← Home</RouterLink></nav>

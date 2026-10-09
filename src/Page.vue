@@ -19,9 +19,12 @@ const links = [
 </script>
 <template>
   <template v-if="route.path === '/'">
+    <div class="profile-card">
+      <Photo :photo="photos.portrait!" />
+      <h1 tabindex="-1">Tiny Goose Club</h1>
+    </div>
     <section class="home-intro">
       <div class="eyebrow"><span class="orange-dot"></span> A LITTLE SPACE TO MAKE THINGS</div>
-      <h1 tabindex="-1">Tiny Goose Club<span class="title-dot">.</span></h1>
       <p class="subtitle">A creative meetup for dabblers.</p>
       <p class="intro">{{ intro }}</p>
       <p class="location">A queer- and neurodivergent-friendly gathering in Hampden, Baltimore.</p>
