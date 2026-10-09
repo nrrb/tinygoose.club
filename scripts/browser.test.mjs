@@ -27,8 +27,8 @@ try {
   const labels = ['WAT DIS?! (What is Tiny Goose Club)', 'HOW GUD HONK AKK (Goose Code of Conduct)', 'WEN NEKS?? (Next Events)']
   assert.equal(await page.getByRole('link', { name: labels[1], exact: true }).innerText(), 'HOW GUD HONK AKK\n(Goose Code of Conduct)')
   assert.equal(await page.getByRole('link', { name: labels[2], exact: true }).innerText(), 'WEN NEKS??\n(Next Events)')
-  assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
-  assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).innerText(), 'HONK!\n(NEXT EVENT!)')
+  assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
+  assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).innerText(), 'HONK!\n(Next Event)')
   for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', 'https://luma.com/fv61x8o0', ...paths]) {
     await page.keyboard.press('Tab')
     assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), href)
@@ -116,7 +116,7 @@ try {
   await page.clock.runFor(180)
   await page.waitForURL(current => current.pathname === '/')
   await page.route('https://luma.com/fv61x8o0', route => route.fulfill({ contentType: 'text/html', body: '<title>Test RSVP destination</title>' }))
-  await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).click()
+  await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).click()
   assert.equal(new URL(page.url()).pathname, '/')
   await page.clock.runFor(180)
   await page.waitForURL('https://luma.com/fv61x8o0')
