@@ -18,7 +18,7 @@ defineProps<{ page: InfoPage }>()
         <img :src="assetBase + meetingSpace.image" :alt="meetingSpace.alt" width="1000" height="1000" />
         <figcaption>{{ meetingSpace.caption }}</figcaption>
       </figure>
-      <p>If knowing what to expect helps you feel more at ease, here’s a look at the room ahead of time. We’ll gather around this shared table to work on our projects.</p>
+      <p>If knowing what to expect helps you feel more at ease, here's a look at the room ahead of time. We'll gather around this shared table to work on our projects.</p>
       <p><a :href="meetingSpace.href">Visit Co-Balt Workspace</a></p>
     </section>
     <template v-if="page.path === '/next-events'">
