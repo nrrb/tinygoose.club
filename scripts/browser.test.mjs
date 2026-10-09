@@ -23,9 +23,15 @@ try {
     await page.setViewportSize({ width, height: 900 })
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     for (const img of await page.locator('.host-row img, .link-button img').all()) {
-      assert.ok(await img.evaluate(el => el.complete && el.naturalWidth > 0))
+      assert.ok(await img.evaluate(el => el.complete && el.naturalWidth === 128 && el.naturalHeight === 128))
       assert.deepEqual(await img.evaluate(el => { const r = el.getBoundingClientRect(); return [r.width, r.height] }), [128, 128])
     }
+    assert.ok(await page.locator('.title-row').evaluate(row => {
+      const image = row.querySelector('img').getBoundingClientRect()
+      const goose = row.querySelector('span').getBoundingClientRect()
+      const bounds = row.getBoundingClientRect()
+      return Math.abs(image.left - bounds.left) < 1 && Math.abs(goose.right - bounds.right) < 1 && Math.abs(image.height - goose.height) < 1
+    }))
   }
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto(url)

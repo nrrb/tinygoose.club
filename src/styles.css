@@ -12,8 +12,9 @@ body { margin: 0; }
 a { color: inherit; }
 a:focus-visible, h1:focus-visible { outline: 3px solid #985400; outline-offset: 5px; }
 .landing { max-width: 560px; margin: auto; padding: 24px; }
-.title-row { display: flex; align-items: center; gap: 24px; margin: 0 0 24px; font-size: 36px; }
-.title-row img { width: 128px; height: 128px; object-fit: contain; }
+.title-row { display: grid; grid-template-columns: minmax(0, 3.296875fr) minmax(0, 1fr); align-items: center; gap: 16px; margin: 0 0 24px; container-type: inline-size; }
+.title-row img { display: block; width: 100%; height: auto; }
+.title-row span { display: grid; place-items: center; font-size: calc((100cqw - 16px) / 4.296875); line-height: 1; }
 .host-row { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
 .host-row img { width: 128px; height: 128px; object-fit: cover; }
 .host-row p { margin: 0; font-size: 17px; }

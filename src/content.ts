@@ -1,10 +1,10 @@
 export const graphics = {
   title: 'photos/tiny-goose-club-title-844x256.jpg',
-  host: 'photos/nicholas-host-256x256.jpg',
-  meetup: 'photos/honk-next-meetup-256x256.jpg',
-  about: 'photos/wut-dis-256x256.jpg',
-  conduct: 'photos/goose-conduct-256x256.jpg',
-  events: 'photos/next-times-256x256.jpg',
+  host: 'photos/nicholas-host-128x128.jpg',
+  meetup: 'photos/honk-next-meetup-128x128.jpg',
+  about: 'photos/wut-dis-128x128.jpg',
+  conduct: 'photos/goose-conduct-128x128.jpg',
+  events: 'photos/next-times-128x128.jpg',
 }
 export const homeLinks = [
   { href: 'https://luma.com/fv61x8o0', label: 'HONK! / NEXT MEETUP!', image: graphics.meetup, internal: false },

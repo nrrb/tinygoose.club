@@ -14,7 +14,7 @@ npm run preview
 
 Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL` for another URL. Tests cover image loading and 128×128 graphic sizes, mobile overflow, keyboard navigation, and button destinations.
 
-Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Homepage graphics are displayed at 128×128 without stretching. Original image files remain unchanged.
+Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Square graphics use the 128×128 assets at their native size. The wide title graphic and goose fill the center column with matching heights. Original image files remain unchanged.
 
 The meetup link goes directly to Luma. “WUT DIS?!” opens About, “Code of Goose Conduct” opens `/code-of-goose-conduct`, and “Next Times” opens the event page. Conduct copy has not been provided; that page is clearly marked as coming soon.
 
