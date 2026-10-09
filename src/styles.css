@@ -21,7 +21,7 @@ a:focus-visible, h1:focus-visible { outline: 3px solid #985400; outline-offset: 
 .host-row strong { font-weight: 600; }
 .link-stack { display: grid; gap: 20px; }
 .link-button { position: relative; display: flex; align-items: center; gap: 20px; min-height: 48px; border: 1px solid var(--ink); background: var(--paper); text-decoration: none; }
-.link-button::before, .link-button::after { content: ''; box-sizing: border-box; position: absolute; background: var(--paper); border: 1px solid var(--ink); pointer-events: none; }
+.link-button::before, .link-button::after { content: ''; box-sizing: border-box; position: absolute; background: rgb(202, 141, 61); border: 1px solid var(--ink); pointer-events: none; }
 .link-button::before { top: -1px; bottom: -1px; right: -7px; width: 6px; border-left: 0; border-bottom: 0; transform: skewY(45deg); transform-origin: top left; }
 .link-button::after { left: -1px; right: -1px; bottom: -7px; height: 6px; border-top: 0; transform: skewX(45deg); transform-origin: top left; }
 .link-button img { display: block; width: 128px; height: 128px; flex-shrink: 0; object-fit: contain; }
