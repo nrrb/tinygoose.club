@@ -24,7 +24,7 @@ try {
   assert.equal(await page.getByRole('link', { name: 'Nicholas on LinkedIn (nicholasrrbennett)', exact: true }).getAttribute('href'), 'https://www.linkedin.com/in/nicholasrrbennett/')
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
   const paths = ['/what-is-tiny-goose-club', '/code-of-goose-conduct', '/next-events']
-  const labels = ['WUT DIS?!', 'Code of Goose Conduct', 'Next Times']
+  const labels = ['WAT DIS?!', 'Code of Goose Conduct', 'Next Times']
   assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
   assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).innerText(), 'HONK!\nNEXT MEETUP!')
   for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', 'https://luma.com/fv61x8o0', ...paths]) {
@@ -89,7 +89,7 @@ try {
   const testTime = new Date('2026-10-09T12:00:00Z')
   await page.clock.install({ time: testTime })
   await page.clock.pauseAt(testTime)
-  const aboutLink = page.getByRole('link', { name: 'WUT DIS?!', exact: true })
+  const aboutLink = page.getByRole('link', { name: 'WAT DIS?!', exact: true })
   assert.ok(await aboutLink.evaluate(el => {
     let preserved = false
     el.addEventListener('click', event => { preserved = !event.defaultPrevented; event.preventDefault() }, { once: true })
@@ -116,7 +116,7 @@ try {
   await page.goto(url)
   await page.getByRole('heading', { name: 'tiny goose club', exact: true }).waitFor()
   assert.equal(await page.locator('.honk').evaluate(el => getComputedStyle(el).animationName), 'none')
-  await page.getByRole('link', { name: 'WUT DIS?!', exact: true }).click()
+  await page.getByRole('link', { name: 'WAT DIS?!', exact: true }).click()
   await page.clock.runFor(1)
   await page.waitForURL('**/what-is-tiny-goose-club')
   assert.deepEqual(errors, [])

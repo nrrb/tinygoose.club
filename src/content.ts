@@ -8,7 +8,7 @@ export const graphics = {
 }
 export const homeLinks = [
   { href: 'https://luma.com/fv61x8o0', headline: 'HONK!', label: 'NEXT MEETUP!', image: graphics.meetup, internal: false },
-  { href: '/what-is-tiny-goose-club', label: 'WUT DIS?!', image: graphics.about, internal: true },
+  { href: '/what-is-tiny-goose-club', label: 'WAT DIS?!', image: graphics.about, internal: true },
   { href: '/code-of-goose-conduct', label: 'Code of Goose Conduct', image: graphics.conduct, internal: true },
   { href: '/next-events', label: 'Next Times', image: graphics.events, internal: true },
 ]

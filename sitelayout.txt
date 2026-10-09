@@ -5,7 +5,7 @@ Claude: each of the follow lines represents a separate horizontal row:
 
 [button: {honk next meetup graphic (public/photos/honk-next-meetup-256x256.jpg)} HONK! / NEXT MEETUP! ]
 
-[button: {wut dis goose graphic (public/photos/wut-dis-256x256.jpg)} WUT DIS?!]
+[button: {wut dis goose graphic (public/photos/wut-dis-256x256.jpg)} WAT DIS?!]
 
 [button: {goose conduct graphic (public/photos/goose-conduct-256x256.jpg)} Code of Goose Conduct]
 
