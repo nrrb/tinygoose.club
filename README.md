@@ -25,3 +25,5 @@ The title used the built-in ImageGen editor with this prompt: “Remove the pape
 The meetup link goes directly to Luma. “WUT DIS?!” opens About, “Code of Goose Conduct” opens `/code-of-goose-conduct`, and “Next Times” opens the event page. Meetup dates and links live in `featuredLink` and `meetups` in `src/content.ts`, displayed in Baltimore time. The full conduct text, with headings and emphasis, is in `src/CodeOfConduct.vue`.
 
 Upload `dist/` to static hosting. `public/_redirects` provides an SPA fallback for compatible hosts. Without rewrites, build with `VITE_ROUTER_MODE=hash npm run build`; for a subdirectory set `VITE_BASE=/your-directory/`. Route-specific social previews may require prerendering. Nothing has been deployed.
+
+For GitHub Pages, select **Settings → Pages → Source → GitHub Actions** in the repository and set the custom domain to `tinygoose.club`. `.github/workflows/deploy.yml` tests and builds the site with hash routing, then publishes `dist/` on pushes to `main` or manual runs. The base is `/` for the custom domain. Configure the Namecheap DNS records and enable HTTPS in GitHub Pages settings before using the site publicly.
