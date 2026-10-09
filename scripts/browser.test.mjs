@@ -64,7 +64,8 @@ try {
       await page.getByText('Thursday, October 22, 2026', { exact: true }).waitFor()
       assert.equal(await page.getByRole('link', { name: /Thursday, November 5, 2026/ }).getAttribute('href'), 'https://luma.com/3h6fh921')
       assert.equal(await page.getByRole('link', { name: /Thursday, November 19, 2026/ }).getAttribute('href'), 'https://luma.com/8jb3leku')
-      assert.equal(await page.getByText('6–8 PM · America/New_York', { exact: true }).count(), 3)
+      assert.equal(await page.getByText('6–8 PM', { exact: true }).count(), 3)
+      assert.equal(await page.getByText('Co-Balt Workspace, Hampden, Baltimore', { exact: true }).count(), 3)
     }
     if (path === '/code-of-goose-conduct') {
       await page.getByRole('heading', { name: 'Tiny Goose Club Code of Conduct', exact: true }).waitFor()

@@ -17,7 +17,7 @@ export const featuredLink = {
   label: 'NEXT EVENT',
   title: 'Our first meetup',
   date: 'Thursday, October 22, 2026',
-  time: '6–8 PM · America/New_York',
+  time: '6–8 PM',
   venue: 'Co-Balt Workspace, Hampden, Baltimore',
 }
 interface Meetup {
@@ -30,8 +30,8 @@ interface Meetup {
 }
 export const meetups: Meetup[] = [
   featuredLink,
-  { href: 'https://luma.com/3h6fh921', label: 'Thursday, November 5, 2026', time: featuredLink.time },
-  { href: 'https://luma.com/8jb3leku', label: 'Thursday, November 19, 2026', time: featuredLink.time },
+  { href: 'https://luma.com/3h6fh921', label: 'Thursday, November 5, 2026', time: featuredLink.time, venue: featuredLink.venue },
+  { href: 'https://luma.com/8jb3leku', label: 'Thursday, November 19, 2026', time: featuredLink.time, venue: featuredLink.venue },
 ]
 export interface InfoPage {
   path: string
