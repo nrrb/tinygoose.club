@@ -47,7 +47,7 @@ onMounted(async () => {
     </div>
     <nav class="link-stack" aria-label="Tiny Goose Club">
       <LinkButton v-for="link in homeLinks" :key="link.href" :href="link.href" :internal="link.internal" :image="link.image">
-        <template v-if="link.headline"><span class="honk" :class="{ 'honk-attention': animateHonk }">{{ link.headline }}</span><br /></template>{{ link.label }}
+        <template v-if="link.headline"><span class="honk display-lettering" :class="{ 'honk-attention': animateHonk }">{{ link.headline }}</span><br /></template><span :class="{ 'display-lettering': link.href === '/what-is-tiny-goose-club' }">{{ link.label }}</span>
       </LinkButton>
     </nav>
     <footer>tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett</footer>

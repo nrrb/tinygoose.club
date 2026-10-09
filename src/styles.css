@@ -36,7 +36,8 @@ h1:focus { outline: none; }
 .link-button.is-pressed::before { width: 0; right: -1px; opacity: 0; }
 .link-button.is-pressed::after { height: 0; bottom: -1px; opacity: 0; }
 .link-label { padding: 12px 16px 12px 0; font-size: 18px; font-weight: 600; overflow-wrap: anywhere; white-space: pre-line; }
-.honk { position: relative; z-index: 1; display: inline-block; font-family: 'Bangers', Impact, sans-serif; font-size: 32px; font-weight: 400; line-height: 1.2; pointer-events: none; }
+.display-lettering { font-family: 'Bangers', Impact, sans-serif; font-size: 32px; font-weight: 400; line-height: 1.2; }
+.honk { position: relative; z-index: 1; display: inline-block; pointer-events: none; }
 .honk-attention { animation: honk-attention 1800ms ease-out; }
 @keyframes honk-attention {
   0%, 100% { transform: scale(1) rotate(0); }
