@@ -1,16 +1,15 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-const route = useRoute()
+import LinkButton from './components/LinkButton.vue'
+import { portrait, featuredLink } from './content'
+const photoSrc = `${import.meta.env.BASE_URL}${portrait.src}`
 </script>
+
 <template>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="site-shell">
-    <header v-if="route.path !== '/'" class="masthead">
-      <RouterLink to="/" class="brand" aria-label="Tiny Goose Club home"><span aria-hidden="true">🪿</span><span>TINY GOOSE CLUB</span></RouterLink>
-      <span class="city">BALTIMORE, MD</span>
-    </header>
-    <nav v-if="route.path !== '/'" class="back-nav" aria-label="Home"><RouterLink to="/">← Home</RouterLink></nav>
-    <main id="main" tabindex="-1"><RouterView /></main>
-    <footer><span>Make a little. Meet a little.</span><RouterLink v-if="route.path !== '/events'" to="/events">Upcoming meetups ↗</RouterLink><RouterLink v-else to="/">Tiny Goose Club ↗</RouterLink></footer>
-  </div>
+  <main class="landing">
+    <h1 class="sr-only">Tiny Goose Club</h1>
+    <div class="portrait">
+      <img :src="photoSrc" :alt="portrait.alt" />
+    </div>
+    <LinkButton :href="featuredLink.href">{{ featuredLink.label }}</LinkButton>
+  </main>
 </template>

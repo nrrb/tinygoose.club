@@ -2,63 +2,30 @@ import assert from 'node:assert/strict'
 import { chromium } from '@playwright/test'
 const url = process.env.TEST_URL || 'http://127.0.0.1:4173'
 const browser = await chromium.launch({ channel: 'chrome' })
-const page = await browser.newPage({ viewport: { width: 390, height: 844 }, timezoneId: 'Pacific/Auckland' })
-await page.clock.setFixedTime(new Date('2026-10-08T12:00:00-04:00'))
-page.setDefaultTimeout(10000)
-const errors = []
-page.on('pageerror', error => errors.push(error.message))
 try {
+  const page = await browser.newPage({ viewport: { width: 448, height: 894 } })
+  const errors = []
+  page.on('pageerror', error => errors.push(error.message))
   await page.goto(url)
-  await page.getByRole('heading', { level: 1 }).waitFor()
+  await page.getByRole('img').waitFor()
   await page.evaluate(() => document.fonts.ready)
-  assert.equal(await page.title(), 'Tiny Goose Club')
-  assert.equal(await page.getByRole('link', { name: 'View event & RSVP' }).getAttribute('href'), 'https://luma.com/fv61x8o0')
-  await page.getByText('Tuesday, October 20, 2026', { exact: false }).waitFor()
-  assert.ok(await page.locator('.link-list').evaluate(el => el.getBoundingClientRect().bottom <= 1064), 'Square portrait and main navigation need only a short mobile scroll')
-  assert.equal(await page.locator('.profile-card').evaluate(el => Math.round(el.getBoundingClientRect().width - el.getBoundingClientRect().height)), 0)
+  assert.ok(await page.getByRole('img').evaluate(img => img.complete && img.naturalWidth === 440))
+  assert.equal(await page.locator('main a').count(), 1)
+  assert.equal(await page.locator('p, footer, nav').count(), 0)
+  assert.equal(await page.getByRole('link').getAttribute('href'), 'https://beacons.ai')
+  assert.equal(await page.getByRole('link').innerText(), 'Make your own Beacons page')
   await page.keyboard.press('Tab')
-  assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Skip to content')
-  await page.keyboard.press('Enter')
-  assert.equal(await page.evaluate(() => document.activeElement.id), 'main')
-  for (const href of ['https://luma.com/fv61x8o0', '/about', '/how-it-works', '/cones', '/nicholas']) {
-    await page.keyboard.press('Tab')
-    assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), href)
-    assert.ok(await page.evaluate(() => document.activeElement.getBoundingClientRect().height >= 44))
-    assert.notEqual(await page.evaluate(() => getComputedStyle(document.activeElement).outlineStyle), 'none')
-  }
-  await page.locator('.link-list a[href="/about"]').click()
-  await page.waitForURL('**/about')
-  await page.waitForFunction(() => document.activeElement?.tagName === 'H1')
-  assert.match(await page.title(), /What’s Tiny Goose Club/)
-  await page.goBack()
-  await page.waitForURL(current => current.pathname === '/')
-  await page.goForward()
-  await page.waitForURL('**/about')
-  for (const path of ['/about', '/how-it-works', '/cones', '/nicholas', '/events', '/missing']) {
-    await page.goto(url + path)
-    await page.getByRole('heading', { level: 1 }).waitFor()
-    assert.ok(await page.getByRole('link', { name: '← Home', exact: true }).count())
-    assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'), 'https://tinygoose.club' + path)
-    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), path + ' has no horizontal overflow')
-    if (path === '/cones') {
-      await page.getByRole('heading', { name: 'Green on top' }).waitFor()
-      await page.getByRole('heading', { name: 'Red on top' }).waitFor()
-    }
-    if (path === '/events') assert.equal(await page.getByRole('link', { name: 'View event & RSVP' }).getAttribute('href'), 'https://luma.com/fv61x8o0')
-  }
-  for (const width of [320, 390, 768, 1440]) {
+  assert.equal(await page.evaluate(() => document.activeElement.tagName), 'A')
+  assert.notEqual(await page.getByRole('link').evaluate(el => getComputedStyle(el).outlineStyle), 'none')
+  await page.getByRole('link').evaluate(el => el.blur())
+  await page.screenshot({ path: '/tmp/tiny-goose-minimal.png', fullPage: true })
+  for (const width of [320, 390, 1440]) {
     await page.setViewportSize({ width, height: 900 })
-    await page.goto(url)
-    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `No overflow at ${width}px`)
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    assert.ok(await page.getByRole('link').evaluate(el => el.getBoundingClientRect().height >= 44))
   }
-  await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto(url)
-  await page.evaluate(() => document.fonts.ready)
-  await page.screenshot({ path: '/tmp/tiny-goose-mobile.png', fullPage: true })
-  await page.setViewportSize({ width: 1440, height: 1000 })
-  await page.goto(url)
-  await page.evaluate(() => document.fonts.ready)
-  await page.screenshot({ path: '/tmp/tiny-goose-desktop.png', fullPage: true })
+  await page.goto(url + '/about')
+  await page.waitForURL(current => current.pathname === '/')
   assert.deepEqual(errors, [])
-  console.log('Mobile, keyboard, route focus, back/forward, direct routes, metadata, and Luma links passed.')
+  console.log('Minimal layout, portrait, link, keyboard, responsive widths, and legacy redirect passed.')
 } finally { await browser.close() }
