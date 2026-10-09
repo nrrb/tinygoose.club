@@ -25,9 +25,8 @@ onMounted(async () => {
     <div class="host-row">
       <img :src="assetBase + graphics.host" alt="Nicholas Bennett" width="64" height="64" />
       <p>
-        <strong>nicholas bennett</strong>
         <span class="host-details">
-          <span>host, tiniest goose</span>
+          <strong>nicholas bennett</strong>
           <span class="host-socials">
             <a :href="hostProfiles.instagram" aria-label="Nicholas on Instagram (@sweet_angel_bb)">
               <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
@@ -43,6 +42,7 @@ onMounted(async () => {
             </a>
           </span>
         </span>
+        <span>host, tiniest goose</span>
       </p>
     </div>
     <nav class="link-stack" aria-label="Tiny Goose Club">
