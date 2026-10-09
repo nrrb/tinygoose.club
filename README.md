@@ -16,7 +16,7 @@ Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL`
 
 Buttons depress for 180ms before navigating. “HONK!” uses Bangers from Google Fonts, grows to eight times its normal size, and shakes once on the first homepage visit in each page load. It then returns to normal; internal Home navigation does not repeat it. Reduced-motion preferences skip animations and the navigation delay.
 
-Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Square graphics use the 128×128 assets at their native size. The wide title graphic and goose fill the center column with matching heights. Original image files remain unchanged.
+Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Square graphics use the 128×128 assets; the host portrait displays at 64×64, while button graphics display at 128×128. The wide title graphic and goose fill the center column with matching heights. Original image files remain unchanged.
 
 The transparent title is `public/photos/tiny-goose-club-title.png`, with `422x128` and `844x256` PNG derivatives. The site uses the larger derivative. PNG preserves transparency; the JPEG originals remain available. Page and button backgrounds are RGB 242,242,242; button side faces use thin rectangular outlines.
 

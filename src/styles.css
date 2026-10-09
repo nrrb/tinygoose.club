@@ -18,7 +18,7 @@ a:focus-visible, h1:focus-visible { outline: 3px solid #985400; outline-offset: 
 .title-row img { display: block; width: 100%; height: auto; }
 .title-row span { display: grid; place-items: center; font-size: calc((100cqw - 16px) / 4.296875); line-height: 1; }
 .host-row { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; }
-.host-row img { width: 128px; height: 128px; object-fit: cover; }
+.host-row img { width: 64px; height: 64px; object-fit: cover; }
 .host-row p { margin: 0; font-size: 17px; }
 .host-row strong { font-weight: 600; }
 .link-stack { display: grid; gap: 20px; }

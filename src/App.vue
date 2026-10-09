@@ -23,7 +23,7 @@ onMounted(async () => {
       <span aria-hidden="true">🪿</span>
     </h1>
     <div class="host-row">
-      <img :src="assetBase + graphics.host" alt="Nicholas Bennett" width="128" height="128" />
+      <img :src="assetBase + graphics.host" alt="Nicholas Bennett" width="64" height="64" />
       <p><strong>nicholas bennett</strong><br />host, tiniest goose</p>
     </div>
     <nav class="link-stack" aria-label="Tiny Goose Club">

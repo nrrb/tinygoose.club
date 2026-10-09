@@ -36,7 +36,8 @@ try {
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     for (const img of await page.locator('.host-row img, .link-button img').all()) {
       assert.ok(await img.evaluate(el => el.complete && el.naturalWidth === 128 && el.naturalHeight === 128))
-      assert.deepEqual(await img.evaluate(el => { const r = el.getBoundingClientRect(); return [r.width, r.height] }), [128, 128])
+      const size = await img.evaluate(el => el.closest('.host-row') ? 64 : 128)
+      assert.deepEqual(await img.evaluate(el => { const r = el.getBoundingClientRect(); return [r.width, r.height] }), [size, size])
     }
     assert.ok(await page.locator('.title-row').evaluate(row => {
       const image = row.querySelector('img').getBoundingClientRect()
