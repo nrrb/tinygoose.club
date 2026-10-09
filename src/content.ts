@@ -51,5 +51,5 @@ export const pages: InfoPage[] = [
     ],
   },
   { path: '/next-events', label: 'Next Events', paragraphs: [] },
-  { path: '/code-of-goose-conduct', label: 'Code of Goose Conduct', paragraphs: ['Conduct details are coming soon.'] },
+  { path: '/code-of-goose-conduct', label: 'Tiny Goose Club Code of Conduct', paragraphs: ['Tiny Goose Club’s Making Stuff in Company meetups are a place to create alongside other people, try something new, and feel welcome doing it.'] },
 ]

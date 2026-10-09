@@ -52,6 +52,9 @@ footer { margin-top: 32px; font-size: 12px; color: #555; text-align: center; }
 .info-page { display: grid; gap: 24px; }
 .info-page h1 { margin: 0; font-size: 28px; line-height: 1.2; }
 .info-page p { margin: 0; font-size: 16px; }
+.conduct-copy { display: grid; gap: 24px; }
+.conduct-copy section { display: grid; gap: 16px; }
+.conduct-copy h2 { margin: 0; font-size: 20px; line-height: 1.3; }
 @media (max-width: 380px) {
   .landing { padding: 16px; }
   .host-row, .link-button { gap: 16px; }

@@ -60,6 +60,13 @@ try {
   await page.waitForURL('**' + paths[0])
   for (const path of paths) {
     await page.goto(url + path)
+    if (path === '/code-of-goose-conduct') {
+      await page.getByRole('heading', { name: 'Tiny Goose Club Code of Conduct', exact: true }).waitFor()
+      assert.equal(await page.getByRole('heading', { level: 2 }).count(), 6)
+      assert.equal(await page.locator('.conduct-copy strong').count(), 2)
+      await page.getByText('These expectations apply to everyone, including me, at our meetups and in Tiny Goose Club’s event-related online spaces.', { exact: true }).waitFor()
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+    }
     await page.getByRole('link', { name: 'Home', exact: true }).click()
     await page.waitForURL(current => current.pathname === '/')
   }

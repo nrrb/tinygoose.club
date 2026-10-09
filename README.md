@@ -22,6 +22,6 @@ The transparent title is `public/photos/tiny-goose-club-title.png`, with `422x12
 
 The title used the built-in ImageGen editor with this prompt: “Remove the paper background from this exact existing image, leaving ONLY its black handwritten text 'tiny goose club' on genuine transparency (alpha channel). Keep the exact letter shapes, strokes, position, margins and original wide 1600:485 aspect ratio. Preserve the handwriting identically: do not redesign or retype it. Make the surviving lettering black. The background must be truly transparent, not white or a checkerboard image. Export a transparent PNG.”
 
-The meetup link goes directly to Luma. “WUT DIS?!” opens About, “Code of Goose Conduct” opens `/code-of-goose-conduct`, and “Next Times” opens the event page. Conduct copy has not been provided; that page is clearly marked as coming soon.
+The meetup link goes directly to Luma. “WUT DIS?!” opens About, “Code of Goose Conduct” opens `/code-of-goose-conduct`, and “Next Times” opens the event page. The full conduct text, with headings and emphasis, is in `src/CodeOfConduct.vue`.
 
 Upload `dist/` to static hosting. `public/_redirects` provides an SPA fallback for compatible hosts. Without rewrites, build with `VITE_ROUTER_MODE=hash npm run build`; for a subdirectory set `VITE_BASE=/your-directory/`. Route-specific social previews may require prerendering. Nothing has been deployed.
