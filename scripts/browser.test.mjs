@@ -24,7 +24,8 @@ try {
   assert.equal(await page.getByRole('link', { name: 'Nicholas on LinkedIn (nicholasrrbennett)', exact: true }).getAttribute('href'), 'https://www.linkedin.com/in/nicholasrrbennett/')
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
   const paths = ['/what-is-tiny-goose-club', '/goose-code-of-conduct', '/next-events']
-  const labels = ['WAT DIS?!', 'Goose Code of Conduct', 'Next Times']
+  const labels = ['WAT DIS?!', 'Goose Code of Conduct', 'WEN NEKS?? (Next Events)']
+  assert.equal(await page.getByRole('link', { name: labels[2], exact: true }).innerText(), 'WEN NEKS??\n(Next Events)')
   assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT MEETUP!)', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
   assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT MEETUP!)', exact: true }).innerText(), 'HONK!\n(NEXT MEETUP!)')
   for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', 'https://luma.com/fv61x8o0', ...paths]) {
