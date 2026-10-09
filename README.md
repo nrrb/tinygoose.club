@@ -1,31 +1,77 @@
-# Tiny Goose Club
+# Tiny Goose Club 🪿
 
-Vue 3 landing page following `sitelayout.txt`: title graphic and goose, host row, four graphic link rows, and the Baltimore footer.
+[tinygoose.club](https://tinygoose.club) is the home of Tiny Goose Club, a quiet creative meetup for dabblers in Hampden, Baltimore, organized by Nicholas Bennett.
+
+Bring a project and your own supplies, and spend a couple of hours making things alongside other people. Drawing, writing, knitting, button-making, coding, beginners, and unfinished projects all belong here. Conversation is optional, and friendship is a possibility.
+
+Nicholas started the club because he wanted a quiet creative meetup and couldn't find one locally. The idea combines body doubling, working on your own things with other people nearby, with the childhood excitement of Show and Tell. Sharing is optional and encouraging, with no pressure to finish something or impress anyone. The club aims to feel welcoming and safe for queer, trans, neurodivergent, disabled, and otherwise marginalized people.
+
+Meetups take place around a shared table in a conference room at Co-Balt Workspace. The site helps attendees learn what to expect, see the room before arriving, understand the shared expectations, and RSVP through Luma.
+
+## What's on the site
+
+- **Home:** the club's title, Nicholas's portrait and social profiles, and four links: the next meetup on Luma, About, the Code of Goose Conduct, and upcoming meetups.
+- **About:** Nicholas's origin story, body doubling and optional Show and Tell, a conference-room photo, and his experience working from Co-Balt since August 2026.
+- **Code of Goose Conduct:** expectations for respecting identities, participation, consent, encouraging feedback, the venue, and how Nicholas handles concerns.
+- **Next Events:** meetup dates, times, locations, and direct Luma RSVP links.
+- **How It Works** and **Goose in Charge:** additional pages explaining the meetup format and introducing Nicholas. These routes exist but aren't currently linked from Home.
+
+The frontend has no backend, accounts, or RSVP storage. Registration happens on Luma.
+
+## Development
+
+Built with Vue 3, the Composition API, TypeScript, Vite, Vue Router, and ordinary CSS. Use Node 22, matching the deployment workflow.
 
 ```sh
 npm ci
 npm run dev
+```
+
+Vite serves the root `index.html`. Keep that file at the repository root.
+
+```sh
 npm run build
 npm test
 npm run preview
 ```
 
-`index.html` must remain at the repository root: Vite serves its root entry file, not `public/photos/index.html`. Moving or deleting it causes a 404 at the dev server's root URL.
+The production build is written to `dist/`. With preview running and Chrome installed, run browser checks in another terminal:
 
-Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL` for another URL. Tests cover graphic sizes, mobile overflow, keyboard navigation, delayed internal/external navigation, modified clicks, the opening honk animation, and reduced motion. The external Luma destination is intercepted in this test; no RSVP is submitted.
+```sh
+npm run test:e2e
+```
 
-Buttons depress for 180ms before navigating. “HONK!” uses Bangers from Google Fonts, grows to eight times its normal size, and shakes once on the first homepage visit in each page load. It then returns to normal; internal Home navigation does not repeat it. Reduced-motion preferences skip animations and the navigation delay.
+Set `TEST_URL` to check a different local server. Checks cover mobile layout, images, routes, social links, keyboard navigation, button presses, the opening honk animation, and reduced motion. Luma navigation is intercepted; no RSVP is submitted.
 
-Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Square graphics use the 128×128 assets; the host portrait displays at 64×64, while button graphics display at 128×128. The wide title graphic and goose fill the center column with matching heights. Original image files remain unchanged.
+## Editing content and photos
 
-The transparent title is `public/photos/tiny-goose-club-title.png`, with `422x128` and `844x256` PNG derivatives. The site uses the larger derivative. PNG preserves transparency; the JPEG originals remain available. Page and button backgrounds are RGB 242,242,242; button side faces use thin rectangular outlines.
+Most editable content is in `src/content.ts`:
 
-The title used the built-in ImageGen editor with this prompt: “Remove the paper background from this exact existing image, leaving ONLY its black handwritten text 'tiny goose club' on genuine transparency (alpha channel). Keep the exact letter shapes, strokes, position, margins and original wide 1600:485 aspect ratio. Preserve the handwriting identically: do not redesign or retype it. Make the surviving lettering black. The background must be truly transparent, not white or a checkerboard image. Export a transparent PNG.”
+- `pages`: page titles and copy, including the About story.
+- `homeLinks`: homepage labels, images, and destinations. Update the first link when the next meetup changes.
+- `featuredLink` and `meetups`: event details and Luma links. Times are shown in Baltimore local time. Events are listed manually; remove or update past dates as needed.
+- `hostProfiles`: Nicholas's Instagram and LinkedIn URLs.
+- `graphics`: homepage image paths.
+- `meetingSpace`: conference-room photo path, alt text, caption, venue description, and workspace link.
 
-The meetup link goes directly to Luma. “WUT DIS?!” opens About, “Code of Goose Conduct” opens `/code-of-goose-conduct`, and “Next Times” opens the event page. Meetup dates and links live in `featuredLink` and `meetups` in `src/content.ts`, displayed in Baltimore time. The full conduct text, with headings and emphasis, is in `src/CodeOfConduct.vue`.
+The full Code of Conduct is in `src/CodeOfConduct.vue`. Shared page layout is in `src/InfoPage.vue`, the homepage is in `src/App.vue`, and styles are in `src/styles.css`.
 
-The About origin story is in `pages` in `src/content.ts`. Its conference-room photo path, alt text, caption, venue description, and workspace link are in `meetingSpace` in the same file. Replace `public/photos/meeting-place.jpg` to update the photo; update its width and height in `src/InfoPage.vue` if its dimensions change.
+Photos and graphics live in `public/photos/`. Replace files or update their paths in `src/content.ts`, keeping alt text and captions accurate. Square homepage assets use the 128×128 versions; Nicholas's portrait displays at 64×64. The title uses a transparent PNG. If the conference-room photo dimensions change, update its width and height in `src/InfoPage.vue`.
 
-Upload `dist/` to static hosting. `public/_redirects` provides an SPA fallback for compatible hosts. Without rewrites, build with `VITE_ROUTER_MODE=hash npm run build`; for a subdirectory set `VITE_BASE=/your-directory/`. Route-specific social previews may require prerendering. Nothing has been deployed.
+The goose favicon is `public/favicon.svg`. The three-goose social preview is `public/goose-social-preview.png`; its sharing metadata is in the root `index.html`.
 
-For GitHub Pages, select **Settings → Pages → Source → GitHub Actions** in the repository and set the custom domain to `tinygoose.club`. `.github/workflows/deploy.yml` tests and builds the site with hash routing, then publishes `dist/` on pushes to `main` or manual runs. The base is `/` for the custom domain. Configure the Namecheap DNS records and enable HTTPS in GitHub Pages settings before using the site publicly.
+Confirm arrival instructions, accessibility details, materials restrictions, Wi-Fi, and outlet availability with the venue before publishing them. The Code of Conduct already includes the office manager's supplied cleaning, parking, workspace, smoking, vaping, and pet rules.
+
+## Hosting
+
+GitHub Pages serves the site at `tinygoose.club`. `.github/workflows/deploy.yml` runs content tests, builds the site, and deploys `dist/` on pushes to `main` or manual runs. Repository Pages settings use **GitHub Actions**, with `tinygoose.club` as the custom domain. Domain DNS is managed separately through Namecheap.
+
+The workflow uses hash routing so direct links and reloads work on GitHub Pages, for example `https://tinygoose.club/#/next-events`. It uses `/` as the asset base for the custom domain.
+
+For other static hosts, upload `dist/`. History routing is the default and requires an SPA fallback to `index.html`; `public/_redirects` supplies one for compatible hosts. For hosts without rewrites:
+
+```sh
+VITE_ROUTER_MODE=hash npm run build
+```
+
+For subdirectory hosting, also set `VITE_BASE=/your-directory/`. Route-specific social previews may require prerendering because this is a client-rendered SPA. Sharing services may cache previews after updates.
