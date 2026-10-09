@@ -23,8 +23,8 @@ try {
   assert.equal(await page.getByRole('link', { name: 'Nicholas on Instagram (@sweet_angel_bb)', exact: true }).getAttribute('href'), 'https://www.instagram.com/sweet_angel_bb/')
   assert.equal(await page.getByRole('link', { name: 'Nicholas on LinkedIn (nicholasrrbennett)', exact: true }).getAttribute('href'), 'https://www.linkedin.com/in/nicholasrrbennett/')
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
-  const paths = ['/what-is-tiny-goose-club', '/code-of-goose-conduct', '/next-events']
-  const labels = ['WAT DIS?!', 'Code of Goose Conduct', 'Next Times']
+  const paths = ['/what-is-tiny-goose-club', '/goose-code-of-conduct', '/next-events']
+  const labels = ['WAT DIS?!', 'Goose Code of Conduct', 'Next Times']
   assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
   assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).innerText(), 'HONK!\nNEXT MEETUP!')
   for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', 'https://luma.com/fv61x8o0', ...paths]) {
@@ -76,8 +76,8 @@ try {
       assert.equal(await page.getByText('6–8 PM', { exact: true }).count(), 3)
       assert.equal(await page.getByText('Co-Balt Workspace, Hampden, Baltimore', { exact: true }).count(), 3)
     }
-    if (path === '/code-of-goose-conduct') {
-      await page.getByRole('heading', { name: 'Tiny Goose Club Code of Conduct', exact: true }).waitFor()
+    if (path === '/goose-code-of-conduct') {
+      await page.getByRole('heading', { name: 'Goose Code of Conduct', exact: true }).waitFor()
       assert.equal(await page.getByRole('heading', { level: 2 }).count(), 7)
       await page.getByRole('heading', { name: 'Respect the space', exact: true }).waitFor()
       assert.equal(await page.locator('.conduct-copy strong').count(), 2)
@@ -87,6 +87,11 @@ try {
     await page.getByRole('link', { name: 'Home', exact: true }).click()
     await page.waitForURL(current => current.pathname === '/')
   }
+  await page.goto(url + '/code-of-goose-conduct')
+  await page.waitForURL('**/goose-code-of-conduct')
+  await page.getByRole('heading', { name: 'Goose Code of Conduct', exact: true }).waitFor()
+  await page.getByRole('link', { name: 'Home', exact: true }).click()
+  await page.waitForURL(current => current.pathname === '/')
   const testTime = new Date('2026-10-09T12:00:00Z')
   await page.clock.install({ time: testTime })
   await page.clock.pauseAt(testTime)

@@ -9,7 +9,7 @@ defineProps<{ page: InfoPage }>()
 <template>
   <main class="landing info-page">
     <h1 tabindex="-1">{{ page.label }}</h1>
-    <CodeOfConduct v-if="page.path === '/code-of-goose-conduct'" />
+    <CodeOfConduct v-if="page.path === '/goose-code-of-conduct'" />
     <template v-else><p v-for="paragraph in page.paragraphs" :key="paragraph">{{ paragraph }}</p></template>
     <section v-if="page.path === '/what-is-tiny-goose-club'" class="meeting-space">
       <h2>A look at the space</h2>

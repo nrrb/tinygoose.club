@@ -10,9 +10,9 @@ Meetups take place around a shared table in a conference room at Co-Balt Workspa
 
 ## What's on the site
 
-- **Home:** the club's title, Nicholas's portrait and social profiles, and four links: the next meetup on Luma, About, the Code of Goose Conduct, and upcoming meetups.
+- **Home:** the club's title, Nicholas's portrait and social profiles, and four links: the next meetup on Luma, About, the Goose Code of Conduct, and upcoming meetups.
 - **About:** Nicholas's origin story, body doubling and optional Show and Tell, a conference-room photo, and his experience working from Co-Balt since August 2026.
-- **Code of Goose Conduct:** expectations for respecting identities, participation, consent, encouraging feedback, the venue, and how Nicholas handles concerns.
+- **Goose Code of Conduct:** expectations for respecting identities, participation, consent, encouraging feedback, the venue, and how Nicholas handles concerns.
 - **Next Events:** meetup dates, times, locations, and direct Luma RSVP links.
 - **How It Works** and **Goose in Charge:** additional pages explaining the meetup format and introducing Nicholas. These routes exist but aren't currently linked from Home.
 

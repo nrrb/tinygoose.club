@@ -9,7 +9,7 @@ export const graphics = {
 export const homeLinks = [
   { href: 'https://luma.com/fv61x8o0', headline: 'HONK!', label: 'NEXT MEETUP!', image: graphics.meetup, internal: false },
   { href: '/what-is-tiny-goose-club', label: 'WAT DIS?!', image: graphics.about, internal: true },
-  { href: '/code-of-goose-conduct', label: 'Code of Goose Conduct', image: graphics.conduct, internal: true },
+  { href: '/goose-code-of-conduct', label: 'Goose Code of Conduct', image: graphics.conduct, internal: true },
   { href: '/next-events', label: 'Next Times', image: graphics.events, internal: true },
 ]
 export const hostProfiles = {
@@ -79,5 +79,5 @@ export const pages: InfoPage[] = [
     ],
   },
   { path: '/next-events', label: 'Next Events', paragraphs: [] },
-  { path: '/code-of-goose-conduct', label: 'Tiny Goose Club Code of Conduct', paragraphs: ['Tiny Goose Club’s Making Stuff in Company meetups are a place to create alongside other people, try something new, and feel welcome doing it.'] },
+  { path: '/goose-code-of-conduct', label: 'Goose Code of Conduct', paragraphs: ['Tiny Goose Club’s Making Stuff in Company meetups are a place to create alongside other people, try something new, and feel welcome doing it.'] },
 ]

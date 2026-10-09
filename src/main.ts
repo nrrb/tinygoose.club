@@ -11,6 +11,7 @@ const router = createRouter({
     : createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: App },
+    { path: '/code-of-goose-conduct', redirect: '/goose-code-of-conduct' },
     ...pages.map(page => ({ path: page.path, component: InfoPage, props: { page }, meta: { title: page.label, description: page.paragraphs[0] || 'Upcoming Tiny Goose Club meetups in Baltimore.' } })),
     { path: '/:pathMatch(.*)*', redirect: '/' },
   ],
