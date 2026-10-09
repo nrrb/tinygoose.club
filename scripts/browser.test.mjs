@@ -24,8 +24,8 @@ try {
   assert.equal(await page.getByRole('link', { name: 'Nicholas on LinkedIn (nicholasrrbennett)', exact: true }).getAttribute('href'), 'https://www.linkedin.com/in/nicholasrrbennett/')
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
   const paths = ['/what-is-tiny-goose-club', '/goose-code-of-conduct', '/next-events']
-  const labels = ['WAT DIS?!', 'HOW AKK! Goose Code of Conduct', 'WEN NEKS?? (Next Events)']
-  assert.equal(await page.getByRole('link', { name: labels[1], exact: true }).innerText(), 'HOW AKK!\nGoose Code of Conduct')
+  const labels = ['WAT DIS?!', 'HOW GUD HONK AKK Goose Code of Conduct', 'WEN NEKS?? (Next Events)']
+  assert.equal(await page.getByRole('link', { name: labels[1], exact: true }).innerText(), 'HOW GUD HONK AKK\nGoose Code of Conduct')
   assert.equal(await page.getByRole('link', { name: labels[2], exact: true }).innerText(), 'WEN NEKS??\n(Next Events)')
   assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
   assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).innerText(), 'HONK!\n(NEXT EVENT!)')
