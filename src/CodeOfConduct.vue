@@ -32,6 +32,16 @@
     </section>
 
     <section>
+      <h2>Respect the space</h2>
+      <p>Co-Balt’s office manager provided these expectations for using the space:</p>
+      <p>We provide our event space and conference rooms in as-is condition.</p>
+      <p>You will be responsible for cleaning and returning the space to the same condition as initially provided.</p>
+      <p>There is no parking on the premises. Paid street parking is available directly outside the main building along W. 36th Street, and free street parking is available on side streets. Please do not park directly on the side of the church.</p>
+      <p>Please be mindful that Co-Balt is a full-time coworking workspace and remember to respect the areas reserved for our full-time members, including (and especially) assigned desks and private offices. Please ensure any guests joining you are similarly respectful of the space and our members.</p>
+      <p>No smoking, no vaping, and no pets please!</p>
+    </section>
+
+    <section>
       <h2>Take concerns seriously</h2>
       <p>If someone tells you that your words or actions caused harm, listen, stop the behavior, and respect their boundary. Good intentions don’t remove the need to address the impact.</p>
       <p>You don’t have to agree with someone’s boundary to respect it. Retaliation against anyone who raises a concern is unacceptable.</p>
