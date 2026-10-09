@@ -8,11 +8,23 @@ try {
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(url)
   await page.getByRole('heading', { name: 'tiny goose club', exact: true }).waitFor()
+  await page.evaluate(() => document.fonts.ready)
+  assert.ok(await page.evaluate(() => Array.from(document.fonts).some(font => font.family === 'Bangers' && font.status === 'loaded')))
+  await page.waitForFunction(() => document.querySelector('.honk').getAnimations().length > 0)
+  assert.ok(await page.locator('.honk').evaluate(el => {
+    const animation = el.getAnimations()[0]
+    animation.pause()
+    animation.currentTime = 360
+    return el.getBoundingClientRect().width > el.closest('a').getBoundingClientRect().width
+  }), 'Opening honk grows wider than its button')
+  await page.locator('.honk').evaluate(el => el.getAnimations()[0].finish())
+  assert.equal(await page.locator('.honk').evaluate(el => getComputedStyle(el).transform), 'none')
   assert.equal(await page.getByRole('link').count(), 4)
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
   const paths = ['/what-is-tiny-goose-club', '/code-of-goose-conduct', '/next-events']
   const labels = ['WUT DIS?!', 'Code of Goose Conduct', 'Next Times']
-  assert.equal(await page.getByRole('link', { name: 'HONK! / NEXT MEETUP!', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
+  assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
+  assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).innerText(), 'HONK!\nNEXT MEETUP!')
   for (const href of ['https://luma.com/fv61x8o0', ...paths]) {
     await page.keyboard.press('Tab')
     assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), href)
@@ -42,6 +54,7 @@ try {
   await page.waitForFunction(() => document.activeElement.tagName === 'H1')
   await page.goBack()
   await page.waitForURL(current => current.pathname === '/')
+  assert.equal(await page.locator('.honk').evaluate(el => el.getAnimations().length), 0, 'Honk does not repeat on internal Home navigation')
   await page.goForward()
   await page.waitForURL('**' + paths[0])
   for (const path of paths) {
@@ -49,6 +62,39 @@ try {
     await page.getByRole('link', { name: 'Home', exact: true }).click()
     await page.waitForURL(current => current.pathname === '/')
   }
+  const testTime = new Date('2026-10-09T12:00:00Z')
+  await page.clock.install({ time: testTime })
+  await page.clock.pauseAt(testTime)
+  const aboutLink = page.getByRole('link', { name: 'WUT DIS?!', exact: true })
+  assert.ok(await aboutLink.evaluate(el => {
+    let preserved = false
+    el.addEventListener('click', event => { preserved = !event.defaultPrevented; event.preventDefault() }, { once: true })
+    el.dispatchEvent(new MouseEvent('click', { ctrlKey: true, bubbles: true, cancelable: true }))
+    return preserved && !el.classList.contains('is-pressed')
+  }), 'Modified clicks keep native browser behavior')
+  await aboutLink.focus()
+  await page.keyboard.press('Enter')
+  assert.equal(new URL(page.url()).pathname, '/')
+  assert.equal(await page.locator('.is-pressed').count(), 1)
+  await page.clock.runFor(179)
+  assert.equal(new URL(page.url()).pathname, '/')
+  await page.clock.runFor(1)
+  await page.waitForURL('**/what-is-tiny-goose-club')
+  await page.getByRole('link', { name: 'Home', exact: true }).click()
+  await page.clock.runFor(180)
+  await page.waitForURL(current => current.pathname === '/')
+  await page.route('https://luma.com/fv61x8o0', route => route.fulfill({ contentType: 'text/html', body: '<title>Test RSVP destination</title>' }))
+  await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).click()
+  assert.equal(new URL(page.url()).pathname, '/')
+  await page.clock.runFor(180)
+  await page.waitForURL('https://luma.com/fv61x8o0')
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto(url)
+  await page.getByRole('heading', { name: 'tiny goose club', exact: true }).waitFor()
+  assert.equal(await page.locator('.honk').evaluate(el => getComputedStyle(el).animationName), 'none')
+  await page.getByRole('link', { name: 'WUT DIS?!', exact: true }).click()
+  await page.clock.runFor(1)
+  await page.waitForURL('**/what-is-tiny-goose-club')
   assert.deepEqual(errors, [])
-  console.log('Row layout, 128px graphics, four links, keyboard focus, routes, and responsive widths passed.')
+  console.log('Layout, routes, keyboard, delayed press navigation, oversized honk, and reduced motion passed.')
 } finally { await browser.close() }

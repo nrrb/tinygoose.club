@@ -12,7 +12,9 @@ npm run preview
 
 `index.html` must remain at the repository root: Vite serves its root entry file, not `public/photos/index.html`. Moving or deleting it causes a 404 at the dev server's root URL.
 
-Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL` for another URL. Tests cover image loading and 128×128 graphic sizes, mobile overflow, keyboard navigation, and button destinations.
+Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL` for another URL. Tests cover graphic sizes, mobile overflow, keyboard navigation, delayed internal/external navigation, modified clicks, the opening honk animation, and reduced motion. The external Luma destination is intercepted in this test; no RSVP is submitted.
+
+Buttons depress for 180ms before navigating. “HONK!” uses Bangers from Google Fonts, grows to eight times its normal size, and shakes once on the first homepage visit in each page load. It then returns to normal; internal Home navigation does not repeat it. Reduced-motion preferences skip animations and the navigation delay.
 
 Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Square graphics use the 128×128 assets at their native size. The wide title graphic and goose fill the center column with matching heights. Original image files remain unchanged.
 
