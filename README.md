@@ -58,7 +58,12 @@ The full Code of Conduct is in `src/CodeOfConduct.vue`. Shared page layout is in
 
 Photos and graphics live in `public/photos/`. Replace files or update their paths in `src/content.ts`, keeping alt text and captions accurate. Square homepage assets use the 128×128 versions; Nicholas's portrait displays at 64×64. The title uses a transparent PNG. If the conference-room photo dimensions change, update its width and height in `src/InfoPage.vue`.
 
-The goose favicon is `public/favicon.svg`. The three-goose social preview is `public/goose-social-preview.png`; its sharing metadata is in the root `index.html`.
+The goose favicon is `public/favicon.svg`. Sharing and event artwork use three geese over a red background tiled with the white word "create", clipped at the edges:
+
+- `public/goose-social-preview.png`: the 1200×630 social-sharing image. Open Graph and Twitter metadata in the root `index.html` reference this image.
+- `public/goose-event-square.png`: a 630×630 center crop for uploading to an event page. The outer geese are clipped by the crop. This is a separate image and doesn't replace the wide preview.
+
+These are static PNG files. When replacing the sharing artwork, keep the metadata dimensions and alt text in `index.html` accurate. Update the square crop separately if you want it to match.
 
 Confirm arrival instructions, accessibility details, materials restrictions, Wi-Fi, and outlet availability with the venue before publishing them. The Code of Conduct already includes the office manager's supplied cleaning, parking, workspace, smoking, vaping, and pet rules.
 
