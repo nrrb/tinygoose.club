@@ -1,6 +1,6 @@
 # Tiny Goose Club
 
-A minimal Vue 3 page: the supplied portrait and reusable yellow link buttons.
+Vue 3 landing page following `sitelayout.txt`: title graphic and goose, host row, four graphic link rows, and the Baltimore footer.
 
 ```sh
 npm ci
@@ -10,12 +10,12 @@ npm test
 npm run preview
 ```
 
-Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL` for a different preview port.
+`index.html` must remain at the repository root: Vite serves its root entry file, not `public/photos/index.html`. Moving or deleting it causes a 404 at the dev server's root URL.
 
-Edit the photo and links in `src/content.ts`. The top button shows the October 20, 2026 meetup details and links directly to Luma. Dates are written in Baltimore time so visitor timezones cannot shift them. `src/components/LinkButton.vue` accepts an `href`, slot text, and an optional `details` slot for reuse.
+Run `npm run test:e2e` with Chrome installed and preview running. Set `TEST_URL` for another URL. Tests cover image loading and 128×128 graphic sizes, mobile overflow, keyboard navigation, and button destinations.
 
-The four links and their simple page content live in the `pages` array in `src/content.ts`: `/what-is-tiny-goose-club`, `/how-it-works`, `/goose-in-charge`, and `/next-events`. Internal buttons use Vue Router; the event button links directly to Luma. Titles, metadata, and focus update on navigation.
+Edit graphics and links in `src/content.ts`. The reusable `LinkButton.vue` takes `href`, optional `internal`, an optional image, and slot text. Homepage graphics are displayed at 128×128 without stretching. Original image files remain unchanged.
 
-The photo displays the supplied screenshot through a CSS crop, preserving the original portrait and embedded title. For an original photo, replace the image and remove the screenshot positioning rule in `src/styles.css`. Poppins loads from Google Fonts with a sans-serif fallback.
+The meetup link goes directly to Luma. “WUT DIS?!” opens About, “Code of Goose Conduct” opens `/code-of-goose-conduct`, and “Next Times” opens the event page. Conduct copy has not been provided; that page is clearly marked as coming soon.
 
-Deploy `dist/` to static hosting. `public/_redirects` provides an SPA fallback for compatible hosts. Without rewrites, build with `VITE_ROUTER_MODE=hash npm run build`. For a subdirectory set `VITE_BASE=/your-directory/` at build time. Unknown routes redirect to the landing page. Route-specific social previews may require prerendering. Nothing has been deployed.
+Upload `dist/` to static hosting. `public/_redirects` provides an SPA fallback for compatible hosts. Without rewrites, build with `VITE_ROUTER_MODE=hash npm run build`; for a subdirectory set `VITE_BASE=/your-directory/`. Route-specific social previews may require prerendering. Nothing has been deployed.

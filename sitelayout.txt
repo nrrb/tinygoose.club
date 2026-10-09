@@ -1,0 +1,16 @@
+Claude: each of the follow lines represents a separate horizontal row:
+
+{ tiny goose club title graphic (public/photos/tiny-goose-club-title-844x256.jpg)} 🪿
+{nicholas bennett portrait (public/photos/nicholas-host-256x256.jpg)} [nicholas bennett {linebreak} host, tiniest goose]
+
+[button: {honk next meetup graphic (public/photos/honk-next-meetup-256x256.jpg)} HONK! / NEXT MEETUP! ]
+
+[button: {wut dis goose graphic (public/photos/wut-dis-256x256.jpg)} WUT DIS?!]
+
+[button: {goose conduct graphic (public/photos/goose-conduct-256x256.jpg)} Code of Goose Conduct]
+
+[button: {next times graphic (public/photos/next-times-256x256.jpg)} Next Times]
+
+tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett
+
+Keep all of the graphics to 128x128 size

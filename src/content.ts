@@ -1,7 +1,17 @@
-export const portrait = {
-  src: 'photos/nicholas-reference.png',
-  alt: 'Nicholas outdoors, with the words Tiny Goose Club over his portrait.',
+export const graphics = {
+  title: 'photos/tiny-goose-club-title-844x256.jpg',
+  host: 'photos/nicholas-host-256x256.jpg',
+  meetup: 'photos/honk-next-meetup-256x256.jpg',
+  about: 'photos/wut-dis-256x256.jpg',
+  conduct: 'photos/goose-conduct-256x256.jpg',
+  events: 'photos/next-times-256x256.jpg',
 }
+export const homeLinks = [
+  { href: 'https://luma.com/fv61x8o0', label: 'HONK! / NEXT MEETUP!', image: graphics.meetup, internal: false },
+  { href: '/what-is-tiny-goose-club', label: 'WUT DIS?!', image: graphics.about, internal: true },
+  { href: '/code-of-goose-conduct', label: 'Code of Goose Conduct', image: graphics.conduct, internal: true },
+  { href: '/next-events', label: 'Next Times', image: graphics.events, internal: true },
+]
 export const featuredLink = {
   href: 'https://luma.com/fv61x8o0',
   label: 'NEXT EVENT',
@@ -41,4 +51,5 @@ export const pages: InfoPage[] = [
     ],
   },
   { path: '/next-events', label: 'Next Events', paragraphs: [] },
+  { path: '/code-of-goose-conduct', label: 'Code of Goose Conduct', paragraphs: ['Conduct details are coming soon.'] },
 ]

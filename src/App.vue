@@ -1,26 +1,22 @@
 <script setup lang="ts">
 import LinkButton from './components/LinkButton.vue'
-import { portrait, featuredLink, pages } from './content'
-const photoSrc = `${import.meta.env.BASE_URL}${portrait.src}`
+import { graphics, homeLinks } from './content'
+const assetBase = import.meta.env.BASE_URL
 </script>
 
 <template>
   <main class="landing">
-    <h1 class="sr-only">Tiny Goose Club</h1>
-    <div class="portrait">
-      <img :src="photoSrc" :alt="portrait.alt" />
+    <h1 class="title-row" tabindex="-1">
+      <img :src="assetBase + graphics.title" alt="tiny goose club" />
+      <span aria-hidden="true">🪿</span>
+    </h1>
+    <div class="host-row">
+      <img :src="assetBase + graphics.host" alt="Nicholas Bennett" width="128" height="128" />
+      <p><strong>nicholas bennett</strong><br />host, tiniest goose</p>
     </div>
-    <div class="link-stack">
-      <LinkButton :href="featuredLink.href">
-        <strong>{{ featuredLink.label }}</strong>
-        <template #details>
-          <span>{{ featuredLink.title }}</span>
-          <span>{{ featuredLink.date }}</span>
-          <span>{{ featuredLink.time }}</span>
-          <span>{{ featuredLink.venue }}</span>
-        </template>
-      </LinkButton>
-      <LinkButton v-for="page in pages" :key="page.path" :href="page.path" internal>{{ page.label }}</LinkButton>
-    </div>
+    <nav class="link-stack" aria-label="Tiny Goose Club">
+      <LinkButton v-for="link in homeLinks" :key="link.href" :href="link.href" :internal="link.internal" :image="link.image">{{ link.label }}</LinkButton>
+    </nav>
+    <footer>tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett</footer>
   </main>
 </template>
