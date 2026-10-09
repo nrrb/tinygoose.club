@@ -55,6 +55,7 @@ try {
   await page.getByRole('link', { name: labels[0], exact: true }).click()
   await page.waitForURL('**' + paths[0])
   await page.waitForFunction(() => document.activeElement.tagName === 'H1')
+  assert.equal(await page.evaluate(() => getComputedStyle(document.activeElement).outlineStyle), 'none')
   await page.goBack()
   await page.waitForURL(current => current.pathname === '/')
   assert.equal(await page.locator('.honk').evaluate(el => el.getAnimations().length), 0, 'Honk does not repeat on internal Home navigation')
