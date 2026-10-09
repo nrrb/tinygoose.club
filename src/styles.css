@@ -32,7 +32,14 @@ body { margin: 0; }
   -webkit-tap-highlight-color: transparent;
 }
 .link-label { max-width: 200px; justify-self: center; text-align: center; font-size: 16px; line-height: 1.4; }
-.landing > .link-button { margin-top: 102px; }
+.link-stack { display: grid; gap: 20px; margin-top: 102px; }
+.link-details { display: grid; gap: 4px; margin-top: 8px; font-size: 11px; }
+.link-label strong { font-weight: 600; }
+.link-button:has(.link-details) { padding-top: 16px; padding-bottom: 16px; }
+.info-page { display: grid; gap: 24px; }
+.info-page h1 { margin: 0; font-size: 28px; line-height: 1.2; }
+.info-page p { margin: 0; font-size: 15px; line-height: 1.7; }
+.info-page h1:focus-visible { outline: 3px solid #704600; outline-offset: 6px; }
 .link-symbol { width: 40px; height: 40px; fill: var(--ink); }
 .link-dots { width: 6px; height: 20px; justify-self: end; fill: #715700; }
 .link-button:focus-visible { outline: 3px solid #704600; outline-offset: 6px; }
