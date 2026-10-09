@@ -12,6 +12,10 @@ export const homeLinks = [
   { href: '/code-of-goose-conduct', label: 'Code of Goose Conduct', image: graphics.conduct, internal: true },
   { href: '/next-events', label: 'Next Times', image: graphics.events, internal: true },
 ]
+export const hostProfiles = {
+  instagram: 'https://www.instagram.com/sweet_angel_bb/',
+  linkedin: 'https://www.linkedin.com/in/nicholasrrbennett/',
+}
 export const meetingSpace = {
   image: 'photos/meeting-place.jpg',
   alt: 'Co-Balt conference room with a long wooden table, chairs, a bench along the glass wall, and a wall-mounted screen.',

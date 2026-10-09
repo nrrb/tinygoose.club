@@ -19,13 +19,15 @@ try {
   }), 'Opening honk grows wider than its button')
   await page.locator('.honk').evaluate(el => el.getAnimations()[0].finish())
   assert.equal(await page.locator('.honk').evaluate(el => getComputedStyle(el).transform), 'none')
-  assert.equal(await page.getByRole('link').count(), 4)
+  assert.equal(await page.getByRole('link').count(), 6)
+  assert.equal(await page.getByRole('link', { name: 'Nicholas on Instagram (@sweet_angel_bb)', exact: true }).getAttribute('href'), 'https://www.instagram.com/sweet_angel_bb/')
+  assert.equal(await page.getByRole('link', { name: 'Nicholas on LinkedIn (nicholasrrbennett)', exact: true }).getAttribute('href'), 'https://www.linkedin.com/in/nicholasrrbennett/')
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
   const paths = ['/what-is-tiny-goose-club', '/code-of-goose-conduct', '/next-events']
   const labels = ['WUT DIS?!', 'Code of Goose Conduct', 'Next Times']
   assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
   assert.equal(await page.getByRole('link', { name: 'HONK! NEXT MEETUP!', exact: true }).innerText(), 'HONK!\nNEXT MEETUP!')
-  for (const href of ['https://luma.com/fv61x8o0', ...paths]) {
+  for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', 'https://luma.com/fv61x8o0', ...paths]) {
     await page.keyboard.press('Tab')
     assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), href)
     assert.notEqual(await page.evaluate(() => getComputedStyle(document.activeElement).outlineStyle), 'none')

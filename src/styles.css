@@ -21,6 +21,10 @@ a:focus-visible, h1:focus-visible { outline: 3px solid #985400; outline-offset: 
 .host-row img { width: 64px; height: 64px; object-fit: cover; }
 .host-row p { margin: 0; font-size: 17px; }
 .host-row strong { font-weight: 600; }
+.host-details { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.host-socials { display: inline-flex; }
+.host-socials a { display: grid; place-items: center; width: 44px; height: 44px; }
+.host-socials svg { width: 22px; height: 22px; }
 .link-stack { display: grid; gap: 20px; }
 .link-button { position: relative; display: flex; align-items: center; gap: 20px; min-height: 48px; border: 1px solid var(--ink); background: var(--paper); text-decoration: none; transition: transform 180ms ease-out; }
 .link-button::before, .link-button::after { content: ''; box-sizing: border-box; position: absolute; background: rgb(202, 141, 61); border: 1px solid var(--ink); pointer-events: none; transition: width 180ms ease-out, height 180ms ease-out, right 180ms ease-out, bottom 180ms ease-out, opacity 180ms ease-out; }
