@@ -48,7 +48,7 @@ export interface InfoPage {
 export const pages: InfoPage[] = [
   {
     path: '/what-is-tiny-goose-club',
-    label: 'What is Tiny Goose Club',
+    label: 'What is Tiny Goose Club 🪿',
     paragraphs: [
       'A creative meetup for dabblers in Hampden, Baltimore. Bring something to make and spend a couple of hours making it alongside other people.',
       "I'm Nicholas, and I wanted a quiet creative meetup for myself. I couldn't find one locally that felt like what I was looking for, so I decided to make it myself.",
