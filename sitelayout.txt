@@ -3,7 +3,7 @@ Claude: each of the follow lines represents a separate horizontal row:
 { tiny goose club title graphic (public/photos/tiny-goose-club-title-844x256.jpg)} 🪿
 {nicholas bennett portrait (public/photos/nicholas-host-256x256.jpg)} [nicholas bennett {linebreak} host, tiniest goose]
 
-[button: {honk next meetup graphic (public/photos/honk-next-meetup-256x256.jpg)} HONK! / NEXT MEETUP! ]
+[button: {honk next meetup graphic (public/photos/honk-next-meetup-256x256.jpg)} HONK! / (NEXT MEETUP!) ]
 
 [button: {wut dis goose graphic (public/photos/wut-dis-256x256.jpg)} WAT DIS?!]
 
