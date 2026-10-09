@@ -24,8 +24,8 @@ try {
   assert.equal(await page.getByRole('link', { name: 'Nicholas on LinkedIn (nicholasrrbennett)', exact: true }).getAttribute('href'), 'https://www.linkedin.com/in/nicholasrrbennett/')
   assert.equal(await page.locator('footer').innerText(), 'tinygoose.club created with ❤️ for Baltimore by Nicholas Bennett')
   const paths = ['/what-is-tiny-goose-club', '/goose-code-of-conduct', '/next-events']
-  const labels = ['WAT DIS?!', 'HOW GUD HONK AKK Goose Code of Conduct', 'WEN NEKS?? (Next Events)']
-  assert.equal(await page.getByRole('link', { name: labels[1], exact: true }).innerText(), 'HOW GUD HONK AKK\nGoose Code of Conduct')
+  const labels = ['WAT DIS?! (What is Tiny Goose Club)', 'HOW GUD HONK AKK (Goose Code of Conduct)', 'WEN NEKS?? (Next Events)']
+  assert.equal(await page.getByRole('link', { name: labels[1], exact: true }).innerText(), 'HOW GUD HONK AKK\n(Goose Code of Conduct)')
   assert.equal(await page.getByRole('link', { name: labels[2], exact: true }).innerText(), 'WEN NEKS??\n(Next Events)')
   assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
   assert.equal(await page.getByRole('link', { name: 'HONK! (NEXT EVENT!)', exact: true }).innerText(), 'HONK!\n(NEXT EVENT!)')
@@ -97,7 +97,7 @@ try {
   const testTime = new Date('2026-10-09T12:00:00Z')
   await page.clock.install({ time: testTime })
   await page.clock.pauseAt(testTime)
-  const aboutLink = page.getByRole('link', { name: 'WAT DIS?!', exact: true })
+  const aboutLink = page.getByRole('link', { name: 'WAT DIS?! (What is Tiny Goose Club)', exact: true })
   assert.ok(await aboutLink.evaluate(el => {
     let preserved = false
     el.addEventListener('click', event => { preserved = !event.defaultPrevented; event.preventDefault() }, { once: true })
@@ -124,7 +124,7 @@ try {
   await page.goto(url)
   await page.getByRole('heading', { name: 'tiny goose club', exact: true }).waitFor()
   assert.equal(await page.locator('.honk').evaluate(el => getComputedStyle(el).animationName), 'none')
-  await page.getByRole('link', { name: 'WAT DIS?!', exact: true }).click()
+  await page.getByRole('link', { name: 'WAT DIS?! (What is Tiny Goose Club)', exact: true }).click()
   await page.clock.runFor(1)
   await page.waitForURL('**/what-is-tiny-goose-club')
   assert.deepEqual(errors, [])
