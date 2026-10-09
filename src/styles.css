@@ -4,7 +4,7 @@
   --line: #dedede;
   font-family: system-ui, sans-serif;
   color: var(--ink);
-  background: var(--paper);
+  background: rgb(242, 242, 242);
   line-height: 1.5;
 }
 * { box-sizing: border-box; }
