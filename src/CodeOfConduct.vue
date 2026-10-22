@@ -1,5 +1,13 @@
 <template>
   <div class="conduct-copy">
+    <iframe
+      class="conduct-video"
+      src="https://www.youtube-nocookie.com/embed/g_g0OzfaxUc"
+      title="Goose Code of Conduct video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
     <p>Tiny Goose Club’s <strong>Making Stuff in Company</strong> meetups are a place to create alongside other people, try something new, and feel welcome doing it. Everyone deserves to feel safe being here, whether they’re sharing a project, chatting, or quietly working.</p>
     <p>We especially want queer, trans, neurodivergent, disabled, and otherwise marginalized people to feel welcome and supported. By attending, you agree to help make that possible.</p>
 

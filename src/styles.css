@@ -64,6 +64,7 @@ footer { margin-top: 32px; font-size: 12px; color: #555; text-align: center; }
 .meeting-space img { display: block; width: 100%; height: auto; border-radius: 12px; }
 .meeting-space figcaption { margin-top: 8px; font-size: 14px; }
 .conduct-copy { display: grid; gap: 24px; }
+.conduct-video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; }
 .conduct-copy section { display: grid; gap: 16px; }
 .conduct-copy h2 { margin: 0; font-size: 20px; line-height: 1.3; }
 @media (max-width: 380px) {
