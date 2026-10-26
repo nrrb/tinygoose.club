@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import LinkButton from './components/LinkButton.vue'
 import CodeOfConduct from './CodeOfConduct.vue'
-import { meetups, graphics, meetingSpace, type InfoPage } from './content'
+import { formatMeetupDate, graphics, meetingSpace, type InfoPage } from './content'
+import { useUpcomingMeetups } from './useUpcomingMeetups'
+const upcomingMeetups = useUpcomingMeetups()
 const assetBase = import.meta.env.BASE_URL
 defineProps<{ page: InfoPage }>()
 </script>
@@ -22,11 +24,11 @@ defineProps<{ page: InfoPage }>()
       <p><a :href="meetingSpace.href">Visit Co-Balt Workspace</a></p>
     </section>
     <template v-if="page.path === '/next-events'">
-      <LinkButton v-for="meetup in meetups" :key="meetup.href" :href="meetup.href" :image="graphics.eventArtwork">
-        <strong>{{ meetup.label }}</strong>
+      <p v-if="!upcomingMeetups.length">New meetup dates are coming soon. Check back for the next event.</p>
+      <LinkButton v-for="meetup in upcomingMeetups" :key="meetup.href" :href="meetup.href" :image="graphics.eventArtwork">
+        <strong>{{ formatMeetupDate(meetup.date) }}</strong>
         <template #details>
           <span v-if="meetup.title">{{ meetup.title }}</span>
-          <span v-if="meetup.date">{{ meetup.date }}</span>
           <span>{{ meetup.time }}</span>
           <span v-if="meetup.venue">{{ meetup.venue }}</span>
         </template>

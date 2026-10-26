@@ -48,8 +48,8 @@ Set `TEST_URL` to check a different local server. Checks cover mobile layout, im
 Most editable content is in `src/content.ts`:
 
 - `pages`: page titles and copy, including the About story.
-- `homeLinks`: homepage labels, images, and destinations. Update the first link when the next meetup changes.
-- `featuredLink` and `meetups`: event details and Luma links. Times are shown in Baltimore local time. Events are listed manually; remove or update past dates as needed.
+- `homeLinks`: the three permanent homepage links. The next-event link is added automatically from `meetups`.
+- `meetups`: the single event list for the homepage and Next Events page. After creating an event on Luma, add its `href`, `date` in `YYYY-MM-DD` format, `time`, and `venue` here, then publish the site update. Optional `title` adds a description. Display dates are formatted automatically. Events stay visible through their full date in Baltimore (`America/New_York`) and disappear after midnight; the earliest remaining date becomes the homepage RSVP link. Open pages refresh every minute and when the window regains focus. No rebuild or scheduled job is needed for dates to roll over. Past entries can be deleted whenever convenient. If no dates remain, the homepage RSVP link is hidden and Next Events shows a message that new dates are coming soon.
 - `hostProfiles`: Nicholas's Instagram and LinkedIn URLs.
 - `graphics`: homepage image paths.
 - `meetingSpace`: conference-room photo path, alt text, caption, venue description, and workspace link.

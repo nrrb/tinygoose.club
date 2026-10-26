@@ -8,7 +8,6 @@ export const graphics = {
   eventArtwork: 'photos/goose-event-square.jpg',
 }
 export const homeLinks = [
-  { href: 'https://luma.com/fv61x8o0', headline: 'HONK!', label: '(Next Event)', image: graphics.meetup, internal: false },
   { href: '/what-is-tiny-goose-club', headline: 'WAT DIS?!', label: '(What is Tiny Goose Club)', image: graphics.about, internal: true },
   { href: '/goose-code-of-conduct', headline: 'HOW GUD HONK AKK', label: '(Goose Code of Conduct)', image: graphics.conduct, internal: true },
   { href: '/next-events', headline: 'WEN NEKS??', label: '(Next Events)', image: graphics.events, internal: true },
@@ -24,27 +23,29 @@ export const meetingSpace = {
   href: 'https://cobaltworkspace.com/',
   description: "I started working full-time from Co-Balt Workspace in August 2026. I've found it to be a calm, quiet place to work, with room for social connections when they happen naturally. It felt like a good place to bring Tiny Goose Club to life.",
 }
-export const featuredLink = {
-  href: 'https://luma.com/fv61x8o0',
-  label: 'NEXT EVENT',
-  title: 'Our first meetup',
-  date: 'Thursday, October 22, 2026',
-  time: '6–8 PM',
-  venue: 'Co-Balt Workspace, Hampden, Baltimore',
-}
 interface Meetup {
   href: string
-  label: string
+  date: string
   time: string
   title?: string
-  date?: string
   venue?: string
 }
 export const meetups: Meetup[] = [
-  featuredLink,
-  { href: 'https://luma.com/3h6fh921', label: 'Thursday, November 5, 2026', time: featuredLink.time, venue: featuredLink.venue },
-  { href: 'https://luma.com/8jb3leku', label: 'Thursday, November 19, 2026', time: featuredLink.time, venue: featuredLink.venue },
+  { href: 'https://luma.com/3h6fh921', date: '2026-11-05', time: '6–8 PM', venue: 'Co-Balt Workspace, Hampden, Baltimore' },
+  { href: 'https://luma.com/8jb3leku', date: '2026-11-19', time: '6–8 PM', venue: 'Co-Balt Workspace, Hampden, Baltimore' },
 ]
+const baltimoreDate = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit',
+})
+export function getUpcomingMeetups(now = new Date(), events = meetups) {
+  const parts = Object.fromEntries(baltimoreDate.formatToParts(now).map(part => [part.type, part.value]))
+  const today = `${parts.year}-${parts.month}-${parts.day}`
+  return events.filter(meetup => meetup.date >= today).sort((a, b) => a.date.localeCompare(b.date))
+}
+const eventDate = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeZone: 'UTC' })
+export function formatMeetupDate(date: string) {
+  return eventDate.format(new Date(`${date}T00:00:00Z`))
+}
 export interface InfoPage {
   path: string
   label: string

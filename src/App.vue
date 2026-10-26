@@ -3,9 +3,17 @@ let honkShown = false
 </script>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import LinkButton from './components/LinkButton.vue'
 import { graphics, homeLinks, hostProfiles } from './content'
+import { useUpcomingMeetups } from './useUpcomingMeetups'
+const upcomingMeetups = useUpcomingMeetups()
+const links = computed(() => {
+  const nextMeetup = upcomingMeetups.value[0]
+  return nextMeetup
+    ? [{ href: nextMeetup.href, headline: 'HONK!', label: '(Next Event)', image: graphics.meetup, internal: false }, ...homeLinks]
+    : homeLinks
+})
 const assetBase = import.meta.env.BASE_URL
 const animateHonk = ref(false)
 const firstVisit = !honkShown
@@ -46,7 +54,7 @@ onMounted(async () => {
       </p>
     </div>
     <nav class="link-stack" aria-label="Tiny Goose Club">
-      <LinkButton v-for="link in homeLinks" :key="link.href" :href="link.href" :internal="link.internal" :image="link.image">
+      <LinkButton v-for="link in links" :key="link.href" :href="link.href" :internal="link.internal" :image="link.image">
         <template v-if="link.headline"><span class="display-lettering" :class="{ honk: !link.internal, 'honk-attention': !link.internal && animateHonk }">{{ link.headline }}</span><br /></template><span>{{ link.label }}</span>
       </LinkButton>
     </nav>

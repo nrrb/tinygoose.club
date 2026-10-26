@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict'
 import { chromium } from '@playwright/test'
+import { formatMeetupDate, getUpcomingMeetups, meetups } from '../src/content.ts'
+const testTime = new Date(`${[...meetups].sort((a, b) => a.date.localeCompare(b.date))[0].date}T12:00:00Z`)
+const upcoming = getUpcomingMeetups(testTime)
+const nextHref = upcoming[0].href
 const url = process.env.TEST_URL || 'http://127.0.0.1:4173'
 const browser = await chromium.launch({ channel: 'chrome' })
 try {
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } })
+  await page.clock.install({ time: testTime })
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
   await page.goto(url)
@@ -27,9 +32,9 @@ try {
   const labels = ['WAT DIS?! (What is Tiny Goose Club)', 'HOW GUD HONK AKK (Goose Code of Conduct)', 'WEN NEKS?? (Next Events)']
   assert.equal(await page.getByRole('link', { name: labels[1], exact: true }).innerText(), 'HOW GUD HONK AKK\n(Goose Code of Conduct)')
   assert.equal(await page.getByRole('link', { name: labels[2], exact: true }).innerText(), 'WEN NEKS??\n(Next Events)')
-  assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).getAttribute('href'), 'https://luma.com/fv61x8o0')
+  assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).getAttribute('href'), nextHref)
   assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).innerText(), 'HONK!\n(Next Event)')
-  for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', 'https://luma.com/fv61x8o0', ...paths]) {
+  for (const href of ['https://www.instagram.com/sweet_angel_bb/', 'https://www.linkedin.com/in/nicholasrrbennett/', nextHref, ...paths]) {
     await page.keyboard.press('Tab')
     assert.equal(await page.evaluate(() => document.activeElement.getAttribute('href')), href)
     assert.notEqual(await page.evaluate(() => getComputedStyle(document.activeElement).outlineStyle), 'none')
@@ -72,15 +77,14 @@ try {
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     }
     if (path === '/next-events') {
-      assert.equal(await page.locator('.link-button img').count(), 3)
+      assert.equal(await page.locator('.link-button img').count(), upcoming.length)
       for (const img of await page.locator('.link-button img').all()) {
         assert.ok(await img.evaluate(el => el.complete && el.naturalWidth === 630 && el.src.endsWith('/photos/goose-event-square.jpg')))
       }
-      await page.getByText('Thursday, October 22, 2026', { exact: true }).waitFor()
-      assert.equal(await page.getByRole('link', { name: /Thursday, November 5, 2026/ }).getAttribute('href'), 'https://luma.com/3h6fh921')
-      assert.equal(await page.getByRole('link', { name: /Thursday, November 19, 2026/ }).getAttribute('href'), 'https://luma.com/8jb3leku')
-      assert.equal(await page.getByText('6–8 PM', { exact: true }).count(), 3)
-      assert.equal(await page.getByText('Co-Balt Workspace, Hampden, Baltimore', { exact: true }).count(), 3)
+      for (const meetup of upcoming) {
+        assert.equal(await page.getByRole('link', { name: formatMeetupDate(meetup.date), exact: false }).getAttribute('href'), meetup.href)
+      }
+      assert.equal(await page.locator('a[href="https://luma.com/fv61x8o0"]').count(), 0)
     }
     if (path === '/goose-code-of-conduct') {
       await page.getByRole('heading', { name: 'Goose Code of Conduct', exact: true }).waitFor()
@@ -98,9 +102,7 @@ try {
   await page.getByRole('heading', { name: 'Goose Code of Conduct', exact: true }).waitFor()
   await page.getByRole('link', { name: 'Home', exact: true }).click()
   await page.waitForURL(current => current.pathname === '/')
-  const testTime = new Date('2026-10-09T12:00:00Z')
-  await page.clock.install({ time: testTime })
-  await page.clock.pauseAt(testTime)
+  await page.clock.pauseAt(new Date(testTime.getTime() + 60_000))
   const aboutLink = page.getByRole('link', { name: 'WAT DIS?! (What is Tiny Goose Club)', exact: true })
   assert.ok(await aboutLink.evaluate(el => {
     let preserved = false
@@ -119,11 +121,11 @@ try {
   await page.getByRole('link', { name: 'Home', exact: true }).click()
   await page.clock.runFor(180)
   await page.waitForURL(current => current.pathname === '/')
-  await page.route('https://luma.com/fv61x8o0', route => route.fulfill({ contentType: 'text/html', body: '<title>Test RSVP destination</title>' }))
+  await page.route(nextHref, route => route.fulfill({ contentType: 'text/html', body: '<title>Test RSVP destination</title>' }))
   await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).click()
   assert.equal(new URL(page.url()).pathname, '/')
   await page.clock.runFor(180)
-  await page.waitForURL('https://luma.com/fv61x8o0')
+  await page.waitForURL(nextHref)
   await page.emulateMedia({ reducedMotion: 'reduce' })
   await page.goto(url)
   await page.getByRole('heading', { name: 'tiny goose club', exact: true }).waitFor()
@@ -131,6 +133,26 @@ try {
   await page.getByRole('link', { name: 'WAT DIS?! (What is Tiny Goose Club)', exact: true }).click()
   await page.clock.runFor(1)
   await page.waitForURL('**/what-is-tiny-goose-club')
+  await page.goto(url)
+  await page.clock.fastForward(24 * 60 * 60 * 1000)
+  const afterFirstEvent = getUpcomingMeetups(new Date(testTime.getTime() + 24 * 60 * 60 * 1000))
+  if (afterFirstEvent.length) {
+    assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).getAttribute('href'), afterFirstEvent[0].href, 'An open homepage promotes the next event without a reload')
+  } else {
+    assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).count(), 0)
+  }
+  await page.goto(url + '/next-events')
+  assert.equal(await page.locator(`a[href="${nextHref}"]`).count(), 0, 'Past event disappears from Next Events')
+  assert.equal(await page.locator('.link-button img').count(), afterFirstEvent.length)
+  const afterAllEvents = new Date(`${upcoming.at(-1).date}T12:00:00Z`)
+  afterAllEvents.setUTCDate(afterAllEvents.getUTCDate() + 1)
+  await page.clock.setSystemTime(afterAllEvents)
+  await page.clock.runFor(60_000)
+  await page.getByText('New meetup dates are coming soon. Check back for the next event.', { exact: true }).waitFor()
+  assert.equal(await page.locator('.link-button img').count(), 0, 'An open event list expires the final event')
+  await page.goto(url)
+  assert.equal(await page.getByRole('link', { name: 'HONK! (Next Event)', exact: true }).count(), 0)
+  assert.equal(await page.getByRole('link', { name: labels[2], exact: true }).count(), 1, 'Next Events remains reachable with an empty schedule')
   assert.deepEqual(errors, [])
-  console.log('Layout, routes, keyboard, delayed press navigation, oversized honk, and reduced motion passed.')
+  console.log('Layout, routes, keyboard, delayed press navigation, honk, reduced motion, live event rollover, and empty schedule passed.')
 } finally { await browser.close() }
