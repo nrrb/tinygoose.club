@@ -88,9 +88,11 @@ try {
     }
     if (path === '/goose-code-of-conduct') {
       await page.getByRole('heading', { name: 'Goose Code of Conduct', exact: true }).waitFor()
-      assert.equal(await page.getByRole('heading', { level: 2 }).count(), 7)
+      assert.equal(await page.getByRole('heading', { level: 2 }).count(), 8)
+      assert.equal(await page.locator('.conduct-video + section h2').innerText(), 'TL;DR')
+      assert.equal(await page.locator('.conduct-video + section li').count(), 7)
       await page.getByRole('heading', { name: 'Respect the space', exact: true }).waitFor()
-      assert.equal(await page.locator('.conduct-copy strong').count(), 2)
+      assert.equal(await page.locator('.conduct-copy strong').count(), 9)
       await page.getByText('These expectations apply to everyone, including me, at our meetups and in Tiny Goose Club’s event-related online spaces.', { exact: true }).waitFor()
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
     }

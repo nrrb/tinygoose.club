@@ -8,6 +8,18 @@
       referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen
     ></iframe>
+    <section>
+      <h2>TL;DR</h2>
+      <ul>
+        <li><strong>Respect everyone.</strong> No bigotry, harassment, or unwanted sexual attention. Use people’s names and pronouns.</li>
+        <li><strong>Let people participate their way.</strong> Talking and sharing are optional. Respect quiet, breaks, different communication styles, and access needs.</li>
+        <li><strong>Ask first.</strong> Get permission before touching people or their things, taking photos, recording, or sharing. Respect “no” immediately and keep personal information private.</li>
+        <li><strong>Keep show and tell encouraging.</strong> Encouragement only; no criticism or unsolicited advice. Outside show and tell, ask before offering suggestions.</li>
+        <li><strong>Respect the space.</strong> Clean up, leave reserved desks and offices alone, and follow venue rules: no on-site parking, smoking, vaping, or pets.</li>
+        <li><strong>Listen when harm is raised.</strong> Stop the behavior, respect boundaries, and never retaliate.</li>
+        <li><strong>Come to Nicholas with concerns.</strong> You can speak privately or message afterward; you don’t have to confront anyone yourself. The host may intervene or ask someone to leave.</li>
+      </ul>
+    </section>
     <p>Tiny Goose Club’s <strong>Making Stuff in Company</strong> meetups are a place to create alongside other people, try something new, and feel welcome doing it. Everyone deserves to feel safe being here, whether they’re sharing a project, chatting, or quietly working.</p>
     <p>We especially want queer, trans, neurodivergent, disabled, and otherwise marginalized people to feel welcome and supported. By attending, you agree to help make that possible.</p>
 
