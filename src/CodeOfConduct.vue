@@ -20,6 +20,7 @@
         <li><strong>Come to Nicholas with concerns.</strong> You can speak privately or message afterward; you don’t have to confront anyone yourself. The host may intervene or ask someone to leave.</li>
       </ul>
     </section>
+    <h2>All the details</h2>
     <p>Tiny Goose Club’s <strong>Making Stuff in Company</strong> meetups are a place to create alongside other people, try something new, and feel welcome doing it. Everyone deserves to feel safe being here, whether they’re sharing a project, chatting, or quietly working.</p>
     <p>We especially want queer, trans, neurodivergent, disabled, and otherwise marginalized people to feel welcome and supported. By attending, you agree to help make that possible.</p>
 
